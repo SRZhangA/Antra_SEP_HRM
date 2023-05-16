@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Recruiting.API.Migrations
 {
     [DbContext(typeof(RecruitingDbContext))]
-    [Migration("20230516025926_InitRecruitDb")]
-    partial class InitRecruitDb
+    [Migration("20230516054149_ChangedDefaultJobStatusId")]
+    partial class ChangedDefaultJobStatusId
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -99,7 +99,9 @@ namespace Recruiting.API.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("JobStatusLookUpId")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(1);
 
                     b.Property<int>("NumberOfPosition")
                         .HasColumnType("int");

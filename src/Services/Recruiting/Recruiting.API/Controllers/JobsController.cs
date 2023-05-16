@@ -14,10 +14,10 @@ public class JobsController : ControllerBase
     {
         this.jobService = jobService;
     }
-    [HttpGet("AllJobs/{int:pageId}")]
+    [HttpGet("AllJobs/{pageId}")]
     public async Task<IActionResult> GetJobsByPagination(int pageId)
     {
-        var jobs = await jobService.GetAllJobsAsync();
+        var jobs = await jobService.GetAllJobsByPageAsync(pageId);
 
         if(!jobs.Any())
         {
@@ -25,7 +25,7 @@ public class JobsController : ControllerBase
         }
         return Ok(jobs);
     }
-    [HttpGet("{id:int}", Name = "GetJobDetails")]
+    [HttpGet("JobDetails/{id:int}", Name = "GetJobDetails")]
     public async Task<IActionResult> GetJobDetails(int id)
     {
         var job = await jobService.GetJobByIdAsync(id);
@@ -36,7 +36,7 @@ public class JobsController : ControllerBase
         }
         return Ok(job);
     }
-    [HttpPost]
+    [HttpPost("Create")]
     public async Task<IActionResult> Create(JobRequestModel model)
     {
         if(!ModelState.IsValid)
