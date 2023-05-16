@@ -1,9 +1,9 @@
 ﻿using ApplicationCore.Contracts.Repositories;
-using Infrustructure.Data;
+using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
-namespace Infrustructure.Repositories;
+namespace Infrastructure.Repositories;
 
 public class BaseRepository<T> : IBaseRepository<T> where T : class
 {
@@ -28,14 +28,6 @@ public class BaseRepository<T> : IBaseRepository<T> where T : class
     public async Task<IEnumerable<T>> GetAllAsync()
     {
         return await dbContext.Set<T>().ToListAsync();
-    }
-
-    public async Task<IEnumerable<T>> GetAllByPageAsync(int page)
-    {
-        return await dbContext.Set<T>()
-                              .Take(page)
-                              .Skip(5)
-                              .ToListAsync();
     }
 
     public async Task<T?> GetByIdAsync(int id)

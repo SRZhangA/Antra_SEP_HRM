@@ -1,6 +1,6 @@
 ﻿using ApplicationCore.Contracts.Services;
 
-namespace Infrustructure.Services;
+namespace Infrastructure.Services;
 
 public class SubmissionService : ISubmissionService
 {

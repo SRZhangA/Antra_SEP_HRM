@@ -3,7 +3,7 @@ using ApplicationCore.Contracts.Services;
 using ApplicationCore.Entities;
 using ApplicationCore.Models;
 
-namespace Infrustructure.Services;
+namespace Infrastructure.Services;
 
 public class JobService : IJobService
 {
@@ -24,7 +24,7 @@ public class JobService : IJobService
             NumberOfPosition = model.NumbersOfPositions,
             CreatedOn = DateTime.UtcNow,
             JobStatusLookUpId = 1,
-            JobCode  = Guid.NewGuid(),
+            JobCode = Guid.NewGuid(),
         };
 
         var job = await jobRepository.AddAsync(jobEntity);
@@ -52,9 +52,24 @@ public class JobService : IJobService
         return response;
     }
 
-    public Task<List<JobResponseModel>> GetAllJobsByPageAsync(int page)
+    public async Task<List<JobResponseModel>> GetAllJobsByPageAsync(int page)
     {
-        throw new NotImplementedException();
+        var jobs = await jobRepository.GetAllByPageOrderedByDateAsync(page);
+
+        List<JobResponseModel> response = new();
+
+        foreach (var job in jobs)
+        {
+            response.Add(new JobResponseModel()
+            {
+                Id = job.Id,
+                Description = job.Description,
+                Title = job.Title,
+                StartDate = job.StartDate,
+                NumberOfPositions = job.NumberOfPosition
+            });
+        }
+        return response;
     }
 
     public async Task<JobResponseModel> GetJobByIdAsync(int id)

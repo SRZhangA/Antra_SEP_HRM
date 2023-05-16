@@ -1,6 +1,6 @@
 ﻿using ApplicationCore.Contracts.Repositories;
 
-namespace Infrustructure.Repositories;
+namespace Infrastructure.Repositories;
 
 public class CandidateRepository : ICandidateRepository
 {
