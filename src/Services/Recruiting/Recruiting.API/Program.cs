@@ -19,7 +19,7 @@ builder.Services.AddScoped<IJobRepository, JobRepository>();
 builder.Services.AddScoped<IJobService, JobService>();
 
 builder.Services.AddDbContext<RecruitingDbContext>(
-    options => options.UseSqlServer(builder.Configuration.GetConnectionString("RecruitingDbConnection"), x => x.MigrationsAssembly("./Infrustructure"))
+    options => options.UseSqlServer(builder.Configuration.GetConnectionString("RecruitingDbConnection"))
 );
 
 var app = builder.Build();

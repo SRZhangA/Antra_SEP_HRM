@@ -11,7 +11,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<OnBoardingDbContext>(
-    options => options.UseSqlServer(builder.Configuration.GetConnectionString("OnBoardingDbConnection"), x => x.MigrationsAssembly("OnBoarding.API"))
+    options => options.UseSqlServer(builder.Configuration.GetConnectionString("OnBoardingDbConnection"))
 );
 
 var app = builder.Build();
