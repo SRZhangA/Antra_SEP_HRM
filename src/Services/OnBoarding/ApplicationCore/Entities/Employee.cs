@@ -5,7 +5,7 @@ public class Employee
     public int Id { get; set; }
     public string Address { get; set; } = string.Empty;
     public string Email { get; set; } = string.Empty;
-    public Guid EmployeeIdeneityId { get; set; }
+    public Guid EmployeeIdentityId { get; set; }
     public DateTime EndDate { get; set; }
     public string FirstName { get; set; } = string.Empty;
     public DateTime HireDate { get; set; }
