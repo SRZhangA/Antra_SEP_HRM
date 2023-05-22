@@ -1,4 +1,8 @@
+using ApplicationCore.Contracts.Repositories;
+using ApplicationCore.Contracts.Services;
 using Infrastructure.Data;
+using Infrastructure.Repositories;
+using Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,6 +17,9 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<OnBoardingDbContext>(
     options => options.UseSqlServer(builder.Configuration.GetConnectionString("OnBoardingDbConnection"))
 );
+
+builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+builder.Services.AddScoped<IEmployeeService, EmployeeService>();
 
 var app = builder.Build();
 
