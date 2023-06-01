@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.5.33627.172
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Recruiting", "Recruiting", "{22ADDB1A-2842-43A9-8E52-61A744DEC6FF}"
+	ProjectSection(SolutionItems) = preProject
+		src\Services\Recruiting\Dockerfile = src\Services\Recruiting\Dockerfile
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Recruiting.API", "src\Services\Recruiting\Recruiting.API\Recruiting.API.csproj", "{7E9CB453-0236-4EB0-8C42-CC835F2D49CE}"
 EndProject
@@ -29,7 +32,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "src\Servi
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Authentication", "Authentication", "{6AA70D8B-3412-4B4D-A6EB-C4DD999C40AC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Authentication.API", "src\Services\Authentication\Authentication.API\Authentication.API.csproj", "{16BFF208-DDAE-4AB4-BD4C-AA8A71B2ABD2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Authentication.API", "src\Services\Authentication\Authentication.API\Authentication.API.csproj", "{16BFF208-DDAE-4AB4-BD4C-AA8A71B2ABD2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
