@@ -7,7 +7,7 @@ on:
     branches: 
       [ master ]
     paths:
-    - 'src/Services/Recruiting/Recruiting.API/**'
+    - '/Antra_SEP_HRM/src/Services/Recruiting/Recruiting.API/**'
     - '.github/workflows/recruiting-api-AutoDeployTrigger-269404c6-8a2d-4559-91f9-da11d3f9603b.yml'
 
   # Allow mannually trigger 
