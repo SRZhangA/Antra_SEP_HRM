@@ -41,7 +41,7 @@ public class JobService : IJobService
         {
             response.Add(new JobResponseModel()
             {
-                Id = job.Id,
+                Id = job.JobCode,
                 Description = job.Description,
                 Title = job.Title,
                 StartDate = job.StartDate,
@@ -62,7 +62,7 @@ public class JobService : IJobService
         {
             response.Add(new JobResponseModel()
             {
-                Id = job.Id,
+                Id = job.JobCode,
                 Description = job.Description,
                 Title = job.Title,
                 StartDate = job.StartDate,
@@ -82,7 +82,7 @@ public class JobService : IJobService
 
         return new JobResponseModel()
         {
-            Id = job.Id,
+            Id = job.JobCode,
             Description = job.Description,
             Title = job.Title,
             StartDate = job.StartDate,

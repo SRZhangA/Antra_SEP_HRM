@@ -46,4 +46,9 @@ public class JobsController : ControllerBase
         var job = await jobService.AddJobAsync(model);
         return CreatedAtAction("GetJobDetails", new {controller = "jobs", id = job}, "Job created");
     }
+    [HttpGet("Search")]
+    public async Task<IActionResult> Search([FromQuery] string searchQuery)
+    {
+        return Ok();
+    }
 }
