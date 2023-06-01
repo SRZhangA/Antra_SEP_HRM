@@ -1,0 +1,42 @@
+name: Trigger auto deployment for recruiting-api
+
+# When this action will be executed
+on:
+  # Automatically trigger it when detected changes in repo
+  push:
+    branches: 
+      [ master ]
+    paths:
+    - 'src/Services/Recruiting/**'
+    - '.github/workflows/recruiting-api-AutoDeployTrigger-8a754114-b43d-440f-a4c2-50707e04b1c7.yml'
+
+  # Allow mannually trigger 
+  workflow_dispatch:
+      
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout to the branch
+        uses: actions/checkout@v2
+
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.RECRUITINGAPI_AZURE_CREDENTIALS }}
+
+      - name: Build and push container image to registry
+        uses: azure/container-apps-deploy-action@v1
+        with:
+          appSourcePath: ${{ github.workspace }}/src/Services/Recruiting 
+          registryUrl: hrmreg.azurecr.io
+          registryUsername: ${{ secrets.RECRUITINGAPI_REGISTRY_USERNAME }}
+          registryPassword: ${{ secrets.RECRUITINGAPI_REGISTRY_PASSWORD }}
+          containerAppName: recruiting-api
+          resourceGroup: HRM
+          imageToBuild: hrmreg.azurecr.io/recruiting-api:${{ github.sha }}
+          dockerfilePath: Dockerfile
+
+     
+
