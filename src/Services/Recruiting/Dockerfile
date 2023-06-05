@@ -7,11 +7,11 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /src
-COPY ["Recruiting.API/", "src/Services/Recruiting/Recruiting.API/"]
-COPY ["ApplicationCore/", "src/Services/Recruiting/ApplicationCore/"]
-COPY ["Infrastructure/", "src/Services/Recruiting/Infrastructure/"]
-RUN dotnet restore "src/Services/Recruiting/Recruiting.API/Recruiting.API.csproj"
-WORKDIR "/src/src/Services/Recruiting/Recruiting.API"
+COPY ["Recruiting.API/", "Services/Recruiting/Recruiting.API/"]
+COPY ["ApplicationCore/", "Services/Recruiting/ApplicationCore/"]
+COPY ["Infrastructure/", "Services/Recruiting/Infrastructure/"]
+RUN dotnet restore "Services/Recruiting/Recruiting.API/Recruiting.API.csproj"
+WORKDIR "/src/Services/Recruiting/Recruiting.API"
 RUN dotnet build "Recruiting.API.csproj" -c Release -o /app/build
 
 FROM build AS publish
