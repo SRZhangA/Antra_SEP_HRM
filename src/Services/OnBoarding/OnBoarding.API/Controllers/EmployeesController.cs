@@ -1,10 +1,12 @@
 ﻿using ApplicationCore.Contracts.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace OnBoarding.API.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
+[Authorize]
 public class EmployeesController : ControllerBase
 {
     private readonly IEmployeeService employeeService;
