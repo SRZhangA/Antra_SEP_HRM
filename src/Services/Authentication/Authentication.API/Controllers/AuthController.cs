@@ -63,39 +63,39 @@ namespace Authentication.API.Controllers
             var password = "strong";
 
             // Must provide UserName and PassWord
-            if (string.IsNullOrEmpty(userName) || string.IsNullOrEmpty(password))
-            {
-                return BadRequest("Login failed, please check your Username and Password");
-            }
+            //if (string.IsNullOrEmpty(userName) || string.IsNullOrEmpty(password))
+            //{
+            //    return BadRequest("Login failed, please check your Username and Password");
+            //}
 
-            var user = await userManager.FindByNameAsync(userName);
+            //var user = await userManager.FindByNameAsync(userName);
 
             // No such user
-            if (user == null)
-            {
-                return NotFound("Login failed, please check your Username and Password");
-            }
+            //if (user == null)
+            //{
+            //    return NotFound("Login failed, please check your Username and Password");
+            //}
 
             // Check if the account is already locked
-            if (await userManager.IsLockedOutAsync(user))
-            {
-                return BadRequest("Account locked!");
-            }
+            //if (await userManager.IsLockedOutAsync(user))
+            //{
+            //    return BadRequest("Account locked!");
+            //}
 
             // Check password
-            var result = await userManager.CheckPasswordAsync(user, password);
+            //var result = await userManager.CheckPasswordAsync(user, password);
 
-            if (!result)
-            {
-                // If password is wrong, increase the failed counter
-                await userManager.AccessFailedAsync(user);
-                return BadRequest("Login failed, please check your Username and Password");
-            }
+            //if (!result)
+            //{
+            //    // If password is wrong, increase the failed counter
+            //    await userManager.AccessFailedAsync(user);
+            //    return BadRequest("Login failed, please check your Username and Password");
+            //}
 
             // Passed password check, remove the failed counter
-            await userManager.ResetAccessFailedCountAsync(user);
+            //await userManager.ResetAccessFailedCountAsync(user);
 
-            var roles = await userManager.GetRolesAsync(user);
+            //var roles = await userManager.GetRolesAsync(user);
 
             //var securityStamp = await userManager.GetSecurityStampAsync(user);
 
@@ -104,16 +104,16 @@ namespace Authentication.API.Controllers
             // Make claims
             List<Claim> claims = new()
         {
-            new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-            new Claim(ClaimTypes.Name, user.UserName!),
-            new Claim(ClaimTypes.Email, user.Email!),
+            new Claim(ClaimTypes.NameIdentifier, Guid.NewGuid().ToString()),
+            new Claim(ClaimTypes.Name, userName),
+            //new Claim(ClaimTypes.Email, user.Email!),
 
         };
 
-            foreach (var role in roles)
-            {
-                claims.Add(new Claim(ClaimTypes.Role, role));
-            }
+            //foreach (var role in roles)
+            //{
+            //    claims.Add(new Claim(ClaimTypes.Role, role));
+            //}
 
             // Private key
             string key = jwtSettings.Value.SecretKey ?? throw new Exception();
