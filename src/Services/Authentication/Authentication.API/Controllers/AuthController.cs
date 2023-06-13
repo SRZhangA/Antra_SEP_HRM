@@ -23,6 +23,11 @@ namespace Authentication.API.Controllers
             this.jwtSettings = jwtSettings;
             this.userManager = userManager;
         }
+        [HttpGet("Test")]
+        public IActionResult Get()
+        {
+            return Ok("Passed");
+        }
 
         [HttpPost("Register")]
         public async Task<ActionResult> EmailAndPasswordRegister()
